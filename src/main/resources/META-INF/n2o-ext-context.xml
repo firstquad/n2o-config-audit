@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="n2oGit" class="net.n2oapp.framework.config.audit.git.service.N2oGit" destroy-method="closeRepo"/>
+
+    <bean id="n2oConfigAuditGit" class="net.n2oapp.framework.config.audit.git.service.N2oConfigAuditGit" >
+        <property name="n2oGit" ref="n2oGit"/>
+    </bean>
+
+</beans>

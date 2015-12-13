@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="net.n2oapp.context.StaticSpringContext"/>
+
+    <bean class="net.n2oapp.framework.config.register.dynamic.DynamicInfoScanner">
+        <constructor-arg name="providerFactory">
+            <bean class="net.n2oapp.framework.config.register.dynamic.DynamicMetadataProviderFactory"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="n2oProperties" class="net.n2oapp.properties.web.MockN2oProperties"/>
+
+    <bean id="n2oGitProperties" class="net.n2oapp.framework.config.audit.git.util.mock.N2oGitTestProperties" destroy-method="deleteRepo"/>
+
+    <bean class="net.n2oapp.framework.config.register.audit.N2oConfigAuditFactory"/>
+
+    <bean id="n2oGit" class="net.n2oapp.framework.config.audit.git.service.N2oGit" destroy-method="closeRepo"/>
+
+    <bean id="n2oConfigAuditGitMock" class="net.n2oapp.framework.config.audit.git.util.mock.N2oConfigAuditGitMock">
+        <property name="n2oGit" ref="n2oGit"/>
+    </bean>
+
+
+</beans>
